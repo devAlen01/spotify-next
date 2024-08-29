@@ -1,0 +1,96 @@
+"use client";
+
+import { useGetMeQuery } from "@/redux/api/me";
+import scss from "./Header.module.scss";
+import Link from "next/link";
+import { FaSpotify } from "react-icons/fa";
+import { useState } from "react";
+import { LiaBoxOpenSolid } from "react-icons/lia";
+import { FiSearch } from "react-icons/fi";
+import { GoHomeFill } from "react-icons/go";
+
+const Header = () => {
+  const { data: session } = useGetMeQuery();
+  const [modal, setModal] = useState<boolean>(false);
+  console.log(session, "Alen");
+
+  const handleLogIn = () => {
+    window.open(
+      `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/auth/login`,
+      "_self"
+    );
+  };
+
+  const handleLogOut = () => {
+    window.open(
+      `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/auth/logout`,
+      "_self"
+    );
+  };
+
+  return (
+    <header className={scss.Header}>
+      <div className="container">
+        <div className={scss.content}>
+          <div className={scss.logo}>
+            <Link href="/">
+              <FaSpotify />
+            </Link>
+          </div>
+
+          <div className={scss.navbar}>
+            <span className={scss.home}>
+              <GoHomeFill />
+            </span>
+
+            <div className={scss.search}>
+              <span className={scss.search_icon}>
+                <FiSearch />
+              </span>
+              <input type="text" />
+              <span className={scss.box_icon}>
+                <div className={scss.line}></div>
+                <LiaBoxOpenSolid />
+              </span>
+            </div>
+          </div>
+          <div className={scss.auth}>
+            {session ? (
+              <>
+                {
+                  <div className={scss.user}>
+                    <h3
+                      title={session.display_name}
+                      onClick={() => setModal(!modal)}
+                    >
+                      {session.display_name.slice(0, 1)}
+                    </h3>
+                    {modal ? (
+                      <div className={scss.modal}>
+                        <button className={scss.logout} onClick={handleLogOut}>
+                          Выйти
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
+                }
+              </>
+            ) : (
+              <>
+                <button
+                  title="Войти"
+                  className={scss.login}
+                  onClick={handleLogIn}
+                >
+                  Войти
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

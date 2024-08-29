@@ -7,12 +7,11 @@ import { FaSpotify } from "react-icons/fa";
 import { useState } from "react";
 import { LiaBoxOpenSolid } from "react-icons/lia";
 import { FiSearch } from "react-icons/fi";
-import { GoHomeFill } from "react-icons/go";
+import { GoHome } from "react-icons/go";
 
 const Header = () => {
   const { data: session } = useGetMeQuery();
   const [modal, setModal] = useState<boolean>(false);
-  console.log(session, "Alen");
 
   const handleLogIn = () => {
     window.open(
@@ -40,14 +39,14 @@ const Header = () => {
 
           <div className={scss.navbar}>
             <span className={scss.home}>
-              <GoHomeFill />
+              <GoHome />
             </span>
 
             <div className={scss.search}>
               <span className={scss.search_icon}>
                 <FiSearch />
               </span>
-              <input type="text" />
+              <input type="text" placeholder="Что хочешь включить?" />
               <span className={scss.box_icon}>
                 <div className={scss.line}></div>
                 <LiaBoxOpenSolid />
@@ -59,12 +58,21 @@ const Header = () => {
               <>
                 {
                   <div className={scss.user}>
-                    <h3
-                      title={session.display_name}
-                      onClick={() => setModal(!modal)}
-                    >
-                      {session.display_name.slice(0, 1)}
-                    </h3>
+                    {session.images[0].url ? (
+                      <img
+                        title={session.display_name}
+                        onClick={() => setModal(!modal)}
+                        src={session.images[0].url}
+                        alt="ava"
+                      />
+                    ) : (
+                      <h3
+                        title={session.display_name}
+                        onClick={() => setModal(!modal)}
+                      >
+                        {session.display_name.slice(0, 1)}
+                      </h3>
+                    )}
                     {modal ? (
                       <div className={scss.modal}>
                         <button className={scss.logout} onClick={handleLogOut}>

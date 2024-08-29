@@ -1,10 +1,10 @@
-import LayoutSide from "@/components/layout/LayoutSide";
+import LayoutSite from "@/components/layout/LayoutSite";
 import React, { ReactNode } from "react";
 
 const layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <LayoutSide>{children}</LayoutSide>
+      <LayoutSite>{children}</LayoutSite>
     </>
   );
 };

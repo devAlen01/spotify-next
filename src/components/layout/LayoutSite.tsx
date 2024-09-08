@@ -5,6 +5,7 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import { useGetMeQuery } from "@/redux/api/me";
 import Loader from "@/ui/Loader/Loader";
+import SideBar from "./SideBar/SideBar";
 
 const LayoutSite = ({ children }: { children: ReactNode }) => {
   const { status } = useGetMeQuery();
@@ -15,7 +16,7 @@ const LayoutSite = ({ children }: { children: ReactNode }) => {
     if (status === "fulfilled" || status === "rejected") {
       setTimeout(() => {
         setIsLoad(false);
-      }, 900);
+      }, 100);
     }
   }, [status]);
 
@@ -25,7 +26,10 @@ const LayoutSite = ({ children }: { children: ReactNode }) => {
   return (
     <div className={scss.LayoutSite}>
       <Header />
-      <main>{children}</main>
+      <div className={scss.home}>
+        <SideBar />
+        <main>{children}</main>
+      </div>
       <Footer />
     </div>
   );

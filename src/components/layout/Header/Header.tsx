@@ -8,10 +8,13 @@ import { useState } from "react";
 import { LiaBoxOpenSolid } from "react-icons/lia";
 import { FiSearch } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
+import { GiHamburgerMenu } from "react-icons/gi";
+import SearchTracks from "@/components/shared/SearchTracks";
 
 const Header = () => {
   const { data: session } = useGetMeQuery();
   const [modal, setModal] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const handleLogIn = () => {
     window.open(
@@ -37,22 +40,26 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className={scss.navbar}>
-            <span className={scss.home}>
-              <GoHome />
-            </span>
+          {!isMobile ? (
+            <div className={scss.navbar}>
+              <span className={scss.home}>
+                <GoHome />
+              </span>
 
-            <div className={scss.search}>
-              <span className={scss.search_icon}>
-                <FiSearch />
-              </span>
-              <input type="text" placeholder="Что хочешь включить?" />
-              <span className={scss.box_icon}>
-                <div className={scss.line}></div>
-                <LiaBoxOpenSolid />
-              </span>
+              <div className={scss.search}>
+                <span className={scss.search_icon}>
+                  <FiSearch />
+                </span>
+                <SearchTracks />
+                <span className={scss.box_icon}>
+                  <div className={scss.line}></div>
+                  <LiaBoxOpenSolid />
+                </span>
+              </div>
             </div>
-          </div>
+          ) : (
+            <GiHamburgerMenu />
+          )}
           <div className={scss.auth}>
             {session ? (
               <>

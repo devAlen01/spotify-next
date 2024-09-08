@@ -1,14 +1,10 @@
-import scss from "./Wellcome.module.scss";
+import React from "react";
 
 const Wellcome = () => {
   return (
-    <section className={scss.Wellcome}>
-      <div className="container">
-        <div className={scss.content}>
-          <h1>Wellcome</h1>
-        </div>
-      </div>
-    </section>
+    <div>
+      <h2>Wellcome</h2>
+    </div>
   );
 };
 

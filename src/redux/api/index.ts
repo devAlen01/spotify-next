@@ -25,8 +25,8 @@ const baseQueryExtended: BaseQueryFn = async (agrs, api, extraOptions) => {
 export const api = createApi({
   reducerPath: "api",
   baseQuery: baseQueryExtended,
-  refetchOnFocus: true,
-  refetchOnReconnect: true,
+  refetchOnFocus: false,
+  refetchOnReconnect: false,
   tagTypes: ["me"],
   endpoints: () => ({}),
 });

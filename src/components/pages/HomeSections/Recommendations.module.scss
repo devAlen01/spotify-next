@@ -1,13 +1,4 @@
-.SearchContent {
-  header {
-    display: none;
-  }
-  @media screen and (max-width: 700px) {
-    header {
-      display: block;
-    }
-    margin: 0;
-  }
+.Recommendations {
   margin: 27px 0;
   .content {
     .items {

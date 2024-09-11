@@ -4,6 +4,7 @@ import scss from "./Footer.module.scss";
 import axios from "axios";
 import { useEffect } from "react";
 import SpotifyWebPlayer from "react-spotify-web-playback";
+import NavBar from "../NavBar/NavBar";
 
 const Footer = () => {
   const { setAccessToken, accessToken, truckIndex, trackUris, setTrackIndex } =
@@ -44,6 +45,9 @@ const Footer = () => {
               trackNameColor: "#fff",
             }}
           />
+          <div className={scss.navbar}>
+            <NavBar />
+          </div>
         </div>
       </div>
     </footer>

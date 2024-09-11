@@ -2,8 +2,11 @@
   margin-left: 5px;
   background-color: rgba(50, 47, 47, 0.357);
   border-radius: 5px;
-  width: 400px;
+  width: clamp(385px, 33vw, 400px);
+
   transition: 0.3s;
+  height: 73vh;
+
   .container {
     padding: 6px;
     .content {
@@ -40,11 +43,16 @@
               color: #fff;
             }
           }
+
           .icons {
             display: flex;
             align-items: center;
             justify-content: end;
             gap: 20px;
+
+            @media screen and (max-width: 700px) {
+              display: none;
+            }
             span {
               display: flex;
               align-items: center;

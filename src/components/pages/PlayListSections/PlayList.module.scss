@@ -8,15 +8,15 @@
 
   //   rgba(211, 231, 225, 0) 100%
   // );
-  background: linear-gradient(
-    180deg,
-    rgba(6, 186, 12, 0.905) 13%,
-    rgba(41, 225, 38, 0.526) 23%,
-    rgba(84, 183, 95, 0.499) 57%,
-    rgba(83, 98, 93, 0) 69%,
+  // background: linear-gradient(
+  //   180deg,
+  //   rgba(6, 186, 12, 0.905) 13%,
+  //   rgba(41, 225, 38, 0.526) 23%,
+  //   rgba(84, 183, 95, 0.499) 57%,
+  //   rgba(83, 98, 93, 0) 69%,
 
-    rgba(211, 231, 225, 0) 100%
-  );
+  //   rgba(211, 231, 225, 0) 100%
+  // );
 
   .content {
     .playlist_info {
@@ -46,6 +46,8 @@
     }
 
     .tracks {
+      padding: 20px;
+
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -109,9 +111,8 @@
                 cursor: pointer;
               }
             }
-            span {
+            .artist {
               font-size: clamp(7px, 2vw, 9px);
-
               font-weight: 300;
               &:hover {
                 text-decoration: underline;

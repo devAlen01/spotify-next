@@ -1,21 +1,17 @@
 "use client";
-import { useGetCategorySeveralQuery } from "@/redux/api/category";
-import scss from "./SearchContent.module.scss";
-import Header from "@/components/layout/Header/Header";
+import { useGetNewReleasesQuery } from "@/redux/api/albums";
+import scss from "./Albums.module.scss";
 
-const SearchContent = () => {
-  const { data, isLoading } = useGetCategorySeveralQuery();
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
+const Albums = () => {
+  const { data } = useGetNewReleasesQuery();
+  console.log("🚀 ~ Albums ~ data:", data);
   return (
-    <section className={scss.SearchContent}>
-      <Header />
+    <section className={scss.Albums}>
       <div className="container">
         <div className={scss.content}>
+          <h1>NewReleases</h1>
           <div className={scss.items}>
-            {data?.categories.items?.map((item, index) => (
+            {data?.albums.items?.map((item, index) => (
               <div
                 className={scss.m}
                 key={index}
@@ -25,7 +21,7 @@ const SearchContent = () => {
                   minWidth: "180px",
                   maxWidth: "270px",
                   height: "clamp(120px, 25vw, 160px)",
-                  background: `url(${item.icons[0].url})`,
+                  background: `url(${item.images[0].url})`,
                   cursor: "pointer",
                   borderRadius: "10px",
                   backgroundPosition: "center",
@@ -46,4 +42,4 @@ const SearchContent = () => {
   );
 };
 
-export default SearchContent;
+export default Albums;

@@ -4,11 +4,26 @@
   justify-content: space-between;
   min-height: 100vh;
 
+  header {
+    @media screen and (max-width: 700px) {
+      display: none;
+    }
+  }
+
   .home {
     display: flex;
     gap: 4px;
-    height: 74vh;
+    height: 73vh;
+    .sideBar {
+      display: block;
+      @media screen and (max-width: 700px) {
+        display: none;
+      }
+    }
 
+    @media screen and (max-width: 700px) {
+      height: 80vh;
+    }
     main {
       width: 100%;
       display: flex;

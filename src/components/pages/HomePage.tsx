@@ -1,12 +1,15 @@
-import React from "react";
-import Wellcome from "./HomeSections/Wellcome";
-import AboutUs from "./HomeSections/AboutUs";
+import Albums from "./HomeSections/Albums";
+import ArtistsSection from "./HomeSections/ArtistsSection";
+import FeaturedPlaylists from "./HomeSections/FeaturedPlaylists";
+import Recommendations from "./HomeSections/Recommendations";
 
 const HomePage = () => {
   return (
     <>
-      <Wellcome />
-      <AboutUs />
+      <ArtistsSection />
+      <FeaturedPlaylists />
+      <Recommendations />
+      <Albums />
     </>
   );
 };

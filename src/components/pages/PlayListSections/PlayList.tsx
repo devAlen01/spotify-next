@@ -4,12 +4,15 @@ import { useGetOnePlaylistQuery } from "@/redux/api/playlists";
 import { usePlayerStore } from "@/stores/usePlayerStore";
 import moment from "moment";
 import { useParams } from "next/navigation";
+import { useState } from "react";
 import { IoPlay } from "react-icons/io5";
+// @ts-ignore
+import { ColorExtractor } from "react-color-extractor";
 
 const PlayList = () => {
   const params = useParams();
   const { data, isLoading } = useGetOnePlaylistQuery(String(params.playlistID));
-
+  const [colors, setColors] = useState<string | null>(null);
   const { setTrackUris, setTrackIndex, setActiveUri, activeUri } =
     usePlayerStore();
 
@@ -35,13 +38,24 @@ const PlayList = () => {
     )
     .format("m:ss");
 
+  const getColors = (detectedColorCodes: string) => {
+    setColors(detectedColorCodes);
+  };
+
   if (isLoading) return null;
   return (
     <div className={scss.PlayList}>
-      <div className="container">
+      <div className={scss.container}>
         <div className={scss.content}>
-          <div className={scss.playlist_info}>
-            <img src={data?.images[0].url} alt="image" width={300} />
+          <div
+            style={{
+              background: `linear-gradient(${colors?.[0]},rgba(83, 98, 93, 0) 99%)`,
+            }}
+            className={scss.playlist_info}
+          >
+            <ColorExtractor getColors={getColors}>
+              <img src={data?.images[0].url} alt="image" />
+            </ColorExtractor>
             <div className={scss.playlist_data}>
               <h2>{data?.name}</h2>
               <div>
@@ -76,7 +90,9 @@ const PlayList = () => {
                   <img src={item?.track?.album?.images[0]?.url} alt="picture" />
                   <div className={scss.track_title}>
                     <h5>{item.track.name}</h5>
-                    <span>{item.track.artists[0].name}</span>
+                    <span className={scss.artist}>
+                      {item.track.artists[0].name}
+                    </span>
                   </div>
                 </div>
 

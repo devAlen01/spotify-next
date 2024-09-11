@@ -7,6 +7,7 @@
   background: #000000;
   padding: 15px 0;
   background: rgb(0, 0, 0);
+
   .content {
     display: flex;
     align-items: center;
@@ -29,19 +30,26 @@
       align-items: center;
       justify-content: center;
       .home {
-        margin: 0 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: clamp(22px, 3vw, 50px);
-        height: clamp(22px, 3vw, 50px);
-        border-radius: 50%;
-        background-color: #1f1f1f;
-        svg {
-          width: 40px;
-          height: 40px;
+        display: none;
+      }
+
+      @media screen and (max-width: 700px) {
+        .home {
+          margin: 0 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: clamp(22px, 3vw, 50px);
+          height: clamp(22px, 3vw, 50px);
+          border-radius: 50%;
+          background-color: #1f1f1f;
+          svg {
+            width: 40px;
+            height: 40px;
+          }
         }
       }
+
       .search {
         display: flex;
         align-items: center;

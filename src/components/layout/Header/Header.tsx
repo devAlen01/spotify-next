@@ -1,6 +1,5 @@
 "use client";
 
-import { useGetMeQuery } from "@/redux/api/me";
 import scss from "./Header.module.scss";
 import Link from "next/link";
 import { FaSpotify } from "react-icons/fa";
@@ -10,11 +9,12 @@ import { FiSearch } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { GiHamburgerMenu } from "react-icons/gi";
 import SearchTracks from "@/components/shared/SearchTracks";
+import { useGetMeQuery } from "@/redux/api/me";
+import { VscFolderLibrary } from "react-icons/vsc";
 
 const Header = () => {
   const { data: session } = useGetMeQuery();
   const [modal, setModal] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const handleLogIn = () => {
     window.open(
@@ -40,26 +40,23 @@ const Header = () => {
             </Link>
           </div>
 
-          {!isMobile ? (
-            <div className={scss.navbar}>
-              <span className={scss.home}>
-                <GoHome />
-              </span>
+          <div className={scss.navbar}>
+            {/* <span className={scss.home}>
+                <VscFolderLibrary />
+              </span> */}
 
-              <div className={scss.search}>
-                <span className={scss.search_icon}>
-                  <FiSearch />
-                </span>
-                <SearchTracks />
-                <span className={scss.box_icon}>
-                  <div className={scss.line}></div>
-                  <LiaBoxOpenSolid />
-                </span>
-              </div>
+            <div className={scss.search}>
+              <span className={scss.search_icon}>
+                <FiSearch />
+              </span>
+              <SearchTracks />
+              <span className={scss.box_icon}>
+                <div className={scss.line}></div>
+                <LiaBoxOpenSolid />
+              </span>
             </div>
-          ) : (
-            <GiHamburgerMenu />
-          )}
+          </div>
+
           <div className={scss.auth}>
             {session ? (
               <>

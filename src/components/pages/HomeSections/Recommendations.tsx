@@ -1,19 +1,17 @@
 "use client";
 import { useGetCategorySeveralQuery } from "@/redux/api/category";
-import scss from "./SearchContent.module.scss";
-import Header from "@/components/layout/Header/Header";
+import scss from "./Recommendations.module.scss";
 
-const SearchContent = () => {
-  const { data, isLoading } = useGetCategorySeveralQuery();
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+const Recommendations = () => {
+  const { data } = useGetCategorySeveralQuery();
 
+  let res = data?.categories.items[0].id;
+  console.log("🚀 ~ Recommendations ~ res:", res);
   return (
-    <section className={scss.SearchContent}>
-      <Header />
+    <section className={scss.Recommendations}>
       <div className="container">
         <div className={scss.content}>
+          <h1>Recommendations</h1>
           <div className={scss.items}>
             {data?.categories.items?.map((item, index) => (
               <div
@@ -46,4 +44,4 @@ const SearchContent = () => {
   );
 };
 
-export default SearchContent;
+export default Recommendations;

@@ -23,7 +23,9 @@ const SideBar = () => {
             <div className={scss.icon_text}>
               <div
                 title="Моя медиатека"
-                onClick={() => setOpenSideBar(!openSideBar)}
+                onClick={() =>
+                  window.innerWidth > 700 ? setOpenSideBar(!openSideBar) : null
+                }
                 className={scss.library}
               >
                 <VscFolderLibrary />

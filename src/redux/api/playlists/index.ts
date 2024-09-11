@@ -16,12 +16,24 @@ const api = index.injectEndpoints({
       PLAYLIST.GetOnePlaylistRequest
     >({
       query: (playlist_id) => ({
-        url: `/playlists/${playlist_id}
-`,
+        url: `/playlists/${playlist_id}`,
+        method: "GET",
+      }),
+    }),
+    getFeaturedPlaylists: builder.query<
+      PLAYLIST.GetFeaturedPlaylistsResponse,
+      PLAYLIST.GetFeaturedPlaylistsRequest
+    >({
+      query: () => ({
+        url: `/browse/featured-playlists`,
         method: "GET",
       }),
     }),
   }),
 });
 
-export const { useGetMyPlaylistQuery, useGetOnePlaylistQuery } = api;
+export const {
+  useGetMyPlaylistQuery,
+  useGetOnePlaylistQuery,
+  useGetFeaturedPlaylistsQuery,
+} = api;

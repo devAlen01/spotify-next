@@ -9,7 +9,6 @@ import { useGetMeQuery } from "@/redux/api/me";
 
 const LayoutSite = ({ children }: { children: ReactNode }) => {
   const { status } = useGetMeQuery();
-
   const [isLoad, setIsLoad] = useState<boolean>(true);
 
   useEffect(() => {
